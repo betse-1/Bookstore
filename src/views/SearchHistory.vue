@@ -24,7 +24,7 @@
               v-else
               :key="item.title"
               avatar
-             to="/book"
+             @click.stop="showModal(item)"
             >
              <v-list-tile-avatar>
               </v-list-tile-avatar>
@@ -37,6 +37,61 @@
           </template>
         </v-list>
       </v-card>
+
+
+
+      <v-dialog
+      v-model="dialog"
+      max-width="600"
+    >
+          <!-- <div class="text-lg-right">
+            <v-btn fab dark small  @click="dialog = false" color="cyan">
+                  <v-icon dark>close</v-icon>
+                </v-btn>
+          </div> -->
+            <v-card>
+              <v-card-action class="text-lg-right">
+                <v-layout>
+                 <v-spacer></v-spacer>
+                 <v-btn fab dark small  @click="dialog = false" color="cyan">
+                  <v-icon dark>close</v-icon>
+                </v-btn>
+                </v-layout>
+              </v-card-action>
+              <v-layout>
+
+                <v-flex xs5>
+                  <v-img
+                    src="https://images-na.ssl-images-amazon.com/images/I/51Iw1UPnjwL._SX324_BO1,204,203,200_.jpg"
+                    height="300px"
+                    contain
+                    class="my-3"
+                  ></v-img>
+                </v-flex>
+                <v-flex xs7>
+                  <v-card-title primary-title>
+                    <div>
+                      <div class="headline">{{item.title}}</div>
+                      <div class="subheading">{{item.subtitle}}</div>
+                      <div class="my-4"></div>
+                      <div class="subheading">  Novel</div> 
+                      <div class="subheading"> ISBN:34565</div>
+                      <div class="subheading"> (2014)</div>
+                    </div>
+                  </v-card-title>
+                </v-flex>
+              </v-layout>
+              <v-divider light></v-divider>
+              <v-card-actions class="pa-3">
+                <v-spacer></v-spacer>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+              </v-card-actions>
+            </v-card>
+    </v-dialog>
     </v-flex>
   </v-layout>
 
@@ -50,97 +105,50 @@ import Navbar from '@/components/Navbar.vue'
   components: {Navbar},
     data () {
       return {
+        dialog: false,
+        item: {},
         items: [
-          { header: 'books' },
           {
             title: 'Absolution Gap by Alastair Reynolds',
-            subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
+            subtitle: "Ali Connors &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
           },
           { divider: true, inset: true },
           {
           
-            title: 'Accelerando <span class="grey--text text--lighten-1">4</span> by Charles Stross ',
-            subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+            title: 'Accelerando by Charles Stross ',
+            subtitle: "Wish I could come, but I'm out of town this weekend."
           },
           { divider: true, inset: true },
           {
            
             title: 'Acidity by Nadeem F. Paracha',
-            subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
+            subtitle: "Do you have Paris recommendations? Have you ever been?"
           },
           { divider: true, inset: true },
           {
           
             title: 'Adulthood Rites, Book Two of Xenogenesis Series by Octavia Butler',
-            subtitle: "<span class='text--primary'>Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?"
+            subtitle: "Have any ideas about what we should get Heidi for her birthday?"
           },
           { divider: true, inset: true },
           {
    
             title: 'Against the Fall of Night, by Arthur C. Clarke',
-            subtitle: "<span class='text--primary'>Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
+            subtitle: " We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
           },
            { divider: true, inset: true },
           {
            
             title: 'An Age by Brian Aldiss',
-            subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-          },
-          { divider: true, inset: true },
-          {
-          
-            title: 'All You Need Is Kill by Hiroshi Sakurazaka',
-            subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-          },
-          { divider: true, inset: true },
-          {
-           
-            title: 'Amped by Daniel H. Wilson',
-            subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
-          },
-          { divider: true, inset: true },
-          {
-          
-            title: 'Ancient Echoes by Robert Holdstock',
-            subtitle: "<span class='text--primary'>Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?"
-          },
-          { divider: true, inset: true },
-          {
-   
-            title: 'The Andromeda Strain by Michael Crichton',
-            subtitle: "<span class='text--primary'>Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
-          },
-           { divider: true, inset: true },
-          {
-           
-            title: 'Andymon by Angela and Karlheinz Steinmüller',
-            subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-          },
-          { divider: true, inset: true },
-          {
-          
-            title: 'Summer BBQ <span class="grey--text text--lighten-1">4</span>',
-            subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
-          },
-          { divider: true, inset: true },
-          {
-           
-            title: 'Oui oui',
-            subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
-          },
-          { divider: true, inset: true },
-          {
-          
-            title: 'Birthday gift',
-            subtitle: "<span class='text--primary'>Trevor Hansen</span> &mdash; Have any ideas about what we should get Heidi for her birthday?"
-          },
-          { divider: true, inset: true },
-          {
-   
-            title: 'Recipe to try',
-            subtitle: "<span class='text--primary'>Britta Holt</span> &mdash; We should eat this: Grate, Squash, Corn, and tomatillo Tacos."
+            subtitle: " I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
           }
         ]
+      }
+    },
+    methods: {
+      showModal(item) {
+        this.item = item;
+        this.dialog = true;
       }
     }
   }
